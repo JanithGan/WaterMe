@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'waterme';
+  frequencies = ['None', 'Daily', 'Weekly'];
+  subunits = ['Unit 1', 'Unit 2', 'Unit 3'];
+  modes = ['Auto', 'Manual'];
 }

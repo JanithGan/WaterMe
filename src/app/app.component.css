@@ -1,0 +1,66 @@
+body{
+	background-image : url("grass.jpg");
+	background-color : #294936;
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+	color: black;
+	font-family: 'Roboto', sans-serif;
+	font-weight:bold;	
+}
+
+.container{
+	background-color : white;
+	height: 1400px;
+	opacity	: 0.95;
+	width: 700px;
+}
+
+header{
+	text-align: center;
+	padding-top: 40px;
+	padding-bottom: 50px;
+	
+		
+}
+h1{
+	font-weight: bold;
+	font-size: 40px;
+	color: #294936;
+	text-shadow: 1px 1px 1px black;
+	
+}	
+
+.box{
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 40px;
+	position: relative;	
+	
+}
+.button_cl{
+	background-color : #294936;
+	color:white;
+}
+
+.select_box{
+	display: inline;
+	padding-right: 30px;
+	
+}
+
+legend{
+	padding-bottom: 10px;
+	text-transform: uppercase;
+	color: #294936;
+	text-decoration: underline;
+}
+
+.box1{
+	text-align:center;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 40px;
+	position: relative;	
+	
+}

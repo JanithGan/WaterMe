@@ -2,26 +2,27 @@
   <div class="container">
     <header>
       <h1>IRRIGATION SYSTEM CONTROLLER</h1>
-    </header> 
+    </header>
 
     <form action="results.html" method="GET">
       <fieldset class="box">
         <legend><strong>Options</strong></legend>
-        <div class="select_box">
-          <label for="manual">Manual</label>
-          <input type="radio" name="mode" id="manual" value="manual">
+
+        <div class="form-group">
+          <div *ngFor="let mode of modes" class="select_box">
+            <label for="mode"> {{mode}}
+              <input type="radio" style="margin:10px;" name="mode" id="mode" value="mode">
+            </label>
+          </div>
         </div>
-        <div class="select_box">
-          <label for="auto">Auto</label>
-          <input type="radio" name="mode" id="auto" value="auto">
-        </div>
+
       </fieldset>
 
       <fieldset class="box">
         <legend><strong>Time and Date</strong></legend>
 
-        <div class="form-group row">
-          <div *ngFor="let unit of subunits" class="checkbox col-sm-3">
+        <div class="form-group">
+          <div *ngFor="let unit of subunits" class="select_box">
             <label for="TimeUnit"> Sub {{unit}}
               <input type="checkbox" name="TimeUnit" id="TimeUnit" value="unit">
             </label>
@@ -40,6 +41,7 @@
           <label for="duration">Duration in Minutes</label>
           <input type="number" name="duration" id="duration" min="1" max="30" class="form-control">
         </div>
+        
         <div class="form-row">
           <div class="col">
             <label for="repetition">Repeat</label>

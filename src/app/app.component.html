@@ -20,29 +20,13 @@
       <fieldset class="box">
         <legend><strong>Time and Date</strong></legend>
 
-        <div class="form-group">
-          <div class="select_box">
-            <label for="TimeUnit1">Sub Unit 1</label>
-            <input type="checkbox" name="TimeUnit1" id="TimeUnit1" value="TimeUnit1">
-          </div>
-          <div class="select_box">
-            <label for="TimeUnit2">Sub Unit 2</label>
-            <input type="checkbox" name="TimeUnit2" id="TimeUnit2" value="TimeUnit2">
-          </div>
-          <div class="select_box">
-            <label for="TimeUnit3">Sub Unit 3</label>
-            <input type="checkbox" name="TimeUnit3" id="TimeUnit3" value="TimeUnit3">
-          </div>
-          <div class="select_box">
-            <label for="TimeUnit4">Sub Unit 4</label>
-            <input type="checkbox" name="TimeUnit4" id="TimeUnit4" value="TimeUnit4">
-          </div>
-          <div class="select_box">
-            <label for="TimeUnit5">Sub Unit 5</label>
-            <input type="checkbox" name="TimeUnit5" id="TimeUnit5" value="TimeUnit5">
+        <div class="form-group row">
+          <div *ngFor="let unit of subunits" class="checkbox col-sm-3">
+            <label for="TimeUnit"> Sub {{unit}}
+              <input type="checkbox" name="TimeUnit" id="TimeUnit" value="unit">
+            </label>
           </div>
         </div>
-
 
         <div class="form-group">
           <label for="date">Set Date</label>

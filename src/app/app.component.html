@@ -15,18 +15,24 @@
             </label>
           </div>
         </div>
-
       </fieldset>
 
       <fieldset class="box">
         <legend><strong>Time and Date</strong></legend>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
           <div *ngFor="let unit of subunits" class="select_box">
             <label for="TimeUnit"> Sub {{unit}}
               <input type="checkbox" name="TimeUnit" id="TimeUnit" value="unit">
             </label>
           </div>
+        </div> -->
+
+        <div class="form-group">
+          <label for="unitno1">Sub Unit Number</label>
+          <select name="unitno1" id="unitno1" class="form-control">
+            <option *ngFor="let no of subunits">{{no}}
+          </select>
         </div>
 
         <div class="form-group">
@@ -41,14 +47,12 @@
           <label for="duration">Duration in Minutes</label>
           <input type="number" name="duration" id="duration" min="1" max="30" class="form-control">
         </div>
-        
+
         <div class="form-row">
           <div class="col">
             <label for="repetition">Repeat</label>
             <select name="repetition" id="repetition" class="form-control">
-              <option value="none">None</option>
-              <option value="daily">Daily</option>
-              <option value="weekly">Weekly</option>
+              <option *ngFor="let f of frequencies">{{f}}
             </select>
           </div>
           <div class="col">
@@ -64,8 +68,11 @@
 
         <div class="form-group">
           <label for="unitno1">Sub Unit Number</label>
-          <input type="number" name="unitno1" id="unitno1" min="1" max="5" class="form-control">
+          <select name="unitno1" id="unitno1" class="form-control">
+            <option *ngFor="let no of subunits">{{no}}
+          </select>
         </div>
+
         <div class="form-group">
           <label for="humidity">Average Humidity</label>
           <output name="humidity" id="humidity"></output>

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +10,19 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'waterme';
-  frequencies = ['None', 'Daily', 'Weekly'];
-  subunits = ['Unit 1', 'Unit 2', 'Unit 3'];
-  modes = ['Auto', 'Manual'];
+
+  path = 1;
+
+  constructor(private auth: AuthService, private router: Router, private userService: UserService) {
+    auth.user$.subscribe(user => {
+      if (user) {
+        router.navigateByUrl('form');
+      }
+      else {
+        router.navigateByUrl('login');
+      }
+    })
+
+  }
+
 }

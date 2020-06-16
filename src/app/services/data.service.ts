@@ -9,7 +9,7 @@ export class DataService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  get(userName) {
-    return this.db.object('/user/' + userName).valueChanges();
+  get(deviceId) {
+    return this.db.object('/devices/' + deviceId).valueChanges();
   }
 }

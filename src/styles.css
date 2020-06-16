@@ -1,1 +1,40 @@
 @import "~bootstrap/dist/css/bootstrap.css";
+@import "https://fonts.googleapis.com/css2?family=Roboto&display=swap";
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+}
+
+body {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-align: center;
+    -ms-flex-pack: center;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    /* padding-top: 40px;
+    padding-bottom: 40px; */
+    background-image: url("/assets/grass.jpg");
+    background-color: #74cf4c;
+    background-position: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 40px;
+    color: #294936;
+    text-shadow: 1px 1px 1px black;
+}
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}

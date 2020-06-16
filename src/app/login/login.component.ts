@@ -8,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent{
 
+
   constructor(private auth: AuthService) { }
 
   login(loginForm){
-    this.auth.login(loginForm.email, loginForm.password);
+     this.auth.login(loginForm.email, loginForm.password);
   }
 
   logout(){

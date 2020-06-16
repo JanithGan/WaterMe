@@ -1,5 +1,16 @@
 {
-  "hosting": {
-    "public": "dist/waterme"
-  }
+  "public": "dist/waterme",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ],
+  "rewrites": [{
+    "source": "/public/**",
+    "destination": "/public.html"
+  },
+  {
+    "source": "**",
+    "destination": "/index.html"
+  }]
 }

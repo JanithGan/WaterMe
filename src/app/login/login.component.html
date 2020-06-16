@@ -1,17 +1,33 @@
-<body class="text-center">
-    <form class="form-signin" #f="ngForm" (ngSubmit)="login(f.value)">
-        <img class="mb-4" src="assets/logo.jpg" alt="image" width="130" height="130">
-        <h1 class="h3 mb-3 font-weight-normal" style="color: white;">Please sign in</h1>
+<form class="form-signin" #f="ngForm" (ngSubmit)="login(f.value)">
+    <img class="mb-4" src="assets/logo.jpg" alt="image" width="120" height="120">
+
+    <div class="white-box col-sm-15">
+        
+        <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
+
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input ngModel name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <input ngModel name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address"
+               required autofocus>
+
         <label for="inputPassword" class="sr-only">Password</label>
-        <input ngModel name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox mb-3" style="color: white;">
+        <input ngModel name="password" type="password" id="inputPassword" class="form-control" placeholder="Password"
+               required>
+
+        <!-- div class="checkbox mb-3">
             <label>
                 <input type="checkbox" value="remember-me"> Remember me
             </label>
-        </div>
+        </div> -->
+
         <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 " style="color: white;">&copy; 2020</p>
-    </form>
-</body>
+
+        <div class="text">
+            Don't have an account ?
+        </div>
+
+        <a routerLink="/signup" style="color: teal;"><u>Sign Up</u></a>
+
+    </div>
+
+    <p class="mt-5 mb-3" style="color: white;">WaterMe Co. &copy; 2020</p>
+</form>

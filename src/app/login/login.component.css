@@ -1,31 +1,20 @@
-html {
-  min-height: 100%;
-}
-
-body {
-  min-height: 100vh;
-}
-
-body {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-	background-image : url("../../assets/grass.jpg");
-	background-color : #74cf4c;
-}
-
 .form-signin {
   width: 100%;
   max-width: 330px;
-  padding: 30px;
+  padding: 15px;
   margin: auto;
 }
+.white-box {
+  background-color: white;
+  padding: 5%;
+  opacity: 0.95;
+  margin: auto;
+}
+
 .form-signin .checkbox {
   font-weight: 400;
 }
+
 .form-signin .form-control {
   position: relative;
   box-sizing: border-box;
@@ -33,16 +22,26 @@ body {
   padding: 10px;
   font-size: 16px;
 }
+
 .form-signin .form-control:focus {
   z-index: 2;
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 }
+
 .form-signin input[type="email"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
+
 .form-signin input[type="password"] {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.text {
+  margin-top: 15px;
+  margin-bottom: 5px;
 }

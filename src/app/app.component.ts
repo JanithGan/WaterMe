@@ -16,7 +16,7 @@ export class AppComponent {
   constructor(private auth: AuthService, private router: Router, private userService: UserService) {
     auth.user$.subscribe(user => {
       if (user) {
-        router.navigateByUrl('form');
+        router.navigateByUrl('form/'+user.uid);
       }
       else {
         router.navigateByUrl('login');

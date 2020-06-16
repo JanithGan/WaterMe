@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { AuthService } from '../services/auth.service';
 import { AppUser } from '../models/app-user';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-data-form',
@@ -14,34 +15,38 @@ export class DataFormComponent {
   frequencies = ['None', 'Daily', 'Weekly'];
   subunits = ['Unit 1', 'Unit 2', 'Unit 3'];
 
-  stats = {"Unit 1":{temp:25, humidity:0.2}, "Unit 2":{temp:26, humidity:0.3}, "Unit 3":{temp:27, humidity:0.4}};
-  
-  unitTemp = this.stats["Unit 1"].temp;
-  unitHumidity = this.stats["Unit 1"].humidity;
-
-  data;
+  deviceData;
+  deviceId: string;
   appUser = <AppUser>{};
 
-  constructor(private dataService: DataService, private auth: AuthService) { 
-    auth.appUser$.subscribe(appUser => this.appUser = appUser)
-  } 
+  unitTemp: number;
+  unitHumidity: number;
 
-  logout(){
+  constructor(private dataService: DataService, private auth: AuthService) {
+    auth.appUser$.subscribe(appUser => {
+      this.appUser = appUser;
+      if (appUser) {
+        this.deviceId = appUser.deviceId;
+
+        this.dataService.get(this.deviceId).pipe(take(1)).subscribe(data => {
+          this.deviceData = data;
+          console.log(data);
+        });
+      }
+    })
+  }
+
+  logout() {
     this.auth.logout();
   }
-  
-  save(f){
+
+  save(f) {
     console.log(f);
-    this.dataService.get('testUser').pipe().subscribe(p => {
-      this.data = p;
-      console.log(p);
-    });
   }
 
-  onUnitChanged2(unitNo){
-    console.log(unitNo.value);
-    this.unitTemp = this.stats[unitNo.value].temp;
-    this.unitHumidity = this.stats[unitNo.value].humidity;
+  onUnitChanged2(unitNo) {
+    this.unitTemp = this.deviceData[unitNo.value].temperature
+    this.unitHumidity = this.deviceData[unitNo.value].humidity;
   }
 
 }

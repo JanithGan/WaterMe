@@ -1,125 +1,125 @@
 <body>
-    <div class="container body">
-  
-      <header>
-        <h1>IRRIGATION SYSTEM CONTROLLER</h1>
-      </header>
-  
-      <form #f="ngForm" (ngSubmit)="save(f.value)">
+  <div class="container body">
 
-         
-        <fieldset class="box">
-          <legend><strong>Device Info</strong></legend>
+    <header>
+      <h1>WATERME SYSTEM CONTROLLER</h1>
+    </header>
 
-          <div class="form-group">
-            <label for="deviceId">Device ID:</label>
-            <output name="deviceId" id="deviceId" style="margin:10px;">{{appUser.deviceId}}</output>
-          </div>
+    <form #f="ngForm" (ngSubmit)="save(f.value)">
 
-          <div class="form-group">
-            <label for="deviceId">Email:</label>
-            <output name="deviceId" id="deviceId" style="margin:10px;">{{appUser.email}}</output>
-          </div>
+      <fieldset class="box">
+        <legend><strong>Device Info</strong></legend>
 
-          <button type="reset" class="btn btn-success  btn-block button_cl" (click)="logout()">Logout</button>
-
-        </fieldset>
-  
-        <fieldset class="box">
-          <legend><strong>Options</strong></legend>
-
-          <div class="select_box">
-            <label for="auto">Auto</label>
-            <input ngModel type="radio" style="margin:10px;" name="mode" id="auto" value="auto">
-          </div>
-  
-          <div class="select_box">
-            <label for="manual">Manual</label>
-            <input ngModel type="radio" style="margin:10px;" name="mode" id="manual" value="manual">
-          </div>
-        </fieldset>
-  
-        <fieldset class="box">
-          <legend><strong>Time and Date</strong></legend>
-  
-          <div class="form-group">
-            <label for="unitNo">Sub Unit Number</label>
-            <select ngModel name="unitNo" id="unitNo" class="form-control">
-              <option *ngFor="let no of subunits">{{no}}
-            </select>
-          </div>
-  
-          <div class="form-group">
-            <label for="date">Set Date</label>
-            <input ngModel type="date" name="date" id="date" class="form-control">
-          </div>
-  
-          <div class="form-group">
-            <label for="time">Set Time</label>
-            <input ngModel type="time" name="time" id="time" class="form-control">
-          </div>
-  
-          <div class="form-group">
-            <label for="duration">Duration in Minutes</label>
-            <input type="number" name="duration" id="duration" min="1" max="30" class="form-control">
-          </div>
-  
-          <div class="form-row">
-            <div class="col">
-              <label for="repetition">Repeat</label>
-              <select ngModel name="repetition" id="repetition" class="form-control">
-                <option *ngFor="let f of frequencies">{{f}}
-              </select>
-            </div>
-  
-            <div class="col">
-              <label for="times">Times per day</label>
-              <input ngModel type="number" name="times" id="times" min="1" max="3" class="form-control">
-            </div>
-          </div>
-          <div class="form-group"></div>
-        </fieldset>
-  
-        <fieldset class="box">
-  
-          <legend><strong>Humidity and Temperature</strong></legend>
-          <div class="form-group">
-            <label for="unitNo1">Sub Unit Number</label>
-            <select #unitNo1 name="unitNo1" id="unitNo1" class="form-control" (change)="onUnitChanged2(unitNo1)">
-              <option *ngFor="let sub of subunits" [value]="sub">{{sub}}
-            </select>
-          </div>
-  
-          <div class="form-group">
-            <label for="humidity">Average Humidity:</label>
-            <output name="humidity" id="humidity" style="margin:10px;">{{unitHumidity}}</output>
-          </div>
-  
-          <div class="form-group">
-            <label for="temperature">Average Temperature:</label>
-            <output name="temperature" id="temperature" style="margin:10px;">{{unitTemp}} C</output>
-          </div>
-  
-        </fieldset>
-  
-        <div class="box-1">
-          <button type="submit" class="btn btn-success btn-block button_cl">Submit</button>
-          <button type="reset" class="btn btn-success  btn-block button_cl">Reset</button>
+        <div class="form-group">
+          <label for="deviceId">Device ID:</label>
+          <output name="deviceId" id="deviceId" style="margin:10px;">{{appUser.deviceId}}</output>
         </div>
-  
-      </form>
-    </div>
-  </body>
-  
-  <!-- <div class="form-group">
+
+        <div class="form-group">
+          <label for="deviceId">Email:</label>
+          <output name="deviceId" id="deviceId" style="margin:10px;">{{appUser.email}}</output>
+        </div>
+
+        <button type="reset" class="btn btn-success  btn-block button_cl" (click)="logout()">Logout</button>
+
+      </fieldset>
+
+      <fieldset class="box">
+        <legend><strong>Options</strong></legend>
+
+        <div class="select_box">
+          <label for="auto">Auto</label>
+          <input ngModel type="radio" style="margin:10px;" name="mode" id="auto" value="auto">
+        </div>
+
+        <div class="select_box">
+          <label for="manual">Manual</label>
+          <input ngModel type="radio" style="margin:10px;" name="mode" id="manual" value="manual">
+        </div>
+      </fieldset>
+
+      <fieldset class="box">
+        <legend><strong>Time and Date</strong></legend>
+
+        <div class="form-group">
+          <label for="unitNo">Sub Unit Number</label>
+          <select ngModel name="unitNo" id="unitNo" class="form-control">
+            <option *ngFor="let sub of subunits">{{sub}}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="date">Set Date</label>
+          <input ngModel type="date" name="date" id="date" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="time">Set Time</label>
+          <input ngModel type="time" name="time" id="time" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="duration">Duration in Minutes</label>
+          <input type="number" name="duration" id="duration" min="1" max="30" class="form-control">
+        </div>
+
+        <div class="form-row">
+          <div class="col">
+            <label for="repetition">Repeat</label>
+            <select ngModel name="repetition" id="repetition" class="form-control">
+              <option *ngFor="let f of frequencies">{{f}}
+            </select>
+          </div>
+
+          <div class="col">
+            <label for="times">Times per day</label>
+            <input ngModel type="number" name="times" id="times" min="1" max="3" class="form-control">
+          </div>
+        </div>
+        <div class="form-group"></div>
+      </fieldset>
+
+      <fieldset class="box">
+
+        <legend><strong>Humidity and Temperature</strong></legend>
+        <div class="form-group">
+          <label for="unitNo1">Sub Unit Number</label>
+          <select ngModel #unitNo1 name="unitNo1" id="unitNo1" class="form-control" (change)="onUnitChanged2(unitNo1)">
+            <option *ngFor="let sub of subunits">{{sub}}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="humidity">Average Humidity:</label>
+          <output name="humidity" id="humidity" style="margin:10px;">{{unitHumidity}}</output>
+        </div>
+
+        <div class="form-group">
+          <label for="temperature">Average Temperature:</label>
+          <output *ngIf="unitTemp" name="temperature" id="temperature" style="margin:10px;">{{unitTemp}}&#176;C
+          </output>
+        </div>
+
+      </fieldset>
+
+      <div class="box-1">
+        <button type="submit" class="btn btn-success btn-block button_cl">Submit</button>
+        <button type="reset" class="btn btn-success  btn-block button_cl">Reset</button>
+      </div>
+
+    </form>
+  </div>
+</body>
+
+<!-- <div class="form-group">
     <div *ngFor="let unit of subunits" class="select_box">
       <label for="TimeUnit"> Sub {{unit}}
         <input type="checkbox" name="TimeUnit" id="TimeUnit" value="unit">
       </label>
     </div>
   </div> -->
-  
-  <!-- <fieldset class="box">
+
+<!-- <fieldset class="box">
     <legend><strong>Battery Level</strong></legend>
     <div class="form-group">
       <label for="unitNo2">Sub Unit Number</label>

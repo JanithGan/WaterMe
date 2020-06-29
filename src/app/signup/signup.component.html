@@ -1,4 +1,4 @@
-<form class="form-signin" #f="ngForm">
+<form class="form-signin" #f="ngForm" (ngSubmit)="signup(f.value)">
     <img class="mb-4" src="assets/logo.jpg" style="margin-top: 1%;" alt="image" width="120" height="120">
     <div class="white-box">
         <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>

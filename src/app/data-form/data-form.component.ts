@@ -40,7 +40,7 @@ export class DataFormComponent {
     this.auth.logout();
   }
 
-  save(f) {
+  saveForm(f) {
     console.log(f);
   }
 

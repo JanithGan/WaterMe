@@ -1,3 +1,4 @@
+import { SubUnitSettings } from './../models/sub-unit';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { AuthService } from '../services/auth.service';
@@ -13,40 +14,53 @@ import { take } from 'rxjs/operators';
 export class DataFormComponent {
 
   frequencies = ['None', 'Daily', 'Weekly'];
-  subunits = ['Unit 1', 'Unit 2', 'Unit 3'];
+  subunits = [];
 
-  deviceData;
-  deviceId: string;
   appUser = <AppUser>{};
+  deviceId: string;
 
+  mode: string = "auto";
   unitTemp: number;
   unitHumidity: number;
+  deviceData: any;
+
+  currentUnit: string;
+  settingsUnit= <SubUnitSettings>{};
 
   constructor(private dataService: DataService, private auth: AuthService) {
-    auth.appUser$.subscribe(appUser => {
+    auth.appUser$.pipe(take(1)).subscribe(appUser => {
       this.appUser = appUser;
       if (appUser) {
         this.deviceId = appUser.deviceId;
 
         this.dataService.get(this.deviceId).pipe(take(1)).subscribe(data => {
           this.deviceData = data;
-          console.log(data);
+          this.mode = this.deviceData["mode"];
+          for(var sub in this.deviceData.units) this.subunits.push(sub);
         });
       }
     })
+  }
+
+  onUnitChanged(unitNo: string){
+    if(this.currentUnit)
+      this.deviceData.units[this.currentUnit].settings = this.settingsUnit;
+    this.currentUnit = unitNo;
+    this.settingsUnit = this.deviceData.units[unitNo].settings;
+  }
+
+  onDataUnitChanged(unitNo: string) {
+    this.unitTemp = this.deviceData.units[unitNo].temperature;
+    this.unitHumidity = this.deviceData.units[unitNo].humidity;
   }
 
   logout() {
     this.auth.logout();
   }
 
-  saveForm(f) {
-    console.log(f);
+  saveForm(f: any) {
+    for(let unitNo of this.subunits){
+      this.dataService.saveSubUnit(this.deviceId, unitNo, this.deviceData.units[unitNo].settings);
+    }
   }
-
-  onUnitChanged2(unitNo) {
-    this.unitTemp = this.deviceData[unitNo.value].temperature
-    this.unitHumidity = this.deviceData[unitNo.value].humidity;
-  }
-
 }

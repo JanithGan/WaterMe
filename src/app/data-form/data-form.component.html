@@ -27,53 +27,55 @@
       <fieldset class="box">
         <legend><strong>Options</strong></legend>
 
+
         <div class="select_box">
           <label for="auto">Auto</label>
-          <input ngModel type="radio" style="margin:10px;" name="mode" id="auto" value="auto">
+          <input [(ngModel)]="mode" type="radio" style="margin:10px;" name="mode" id="auto" value="auto">
         </div>
 
         <div class="select_box">
           <label for="manual">Manual</label>
-          <input ngModel type="radio" style="margin:10px;" name="mode" id="manual" value="manual">
+          <input [(ngModel)]="mode" type="radio" style="margin:10px;" name="mode" id="manual" value="manual">
         </div>
       </fieldset>
 
-      <fieldset class="box">
+      <fieldset [disabled]= "mode=='auto' ? true : null"  class="box">
         <legend><strong>Time and Date</strong></legend>
 
         <div class="form-group">
           <label for="unitNo">Sub Unit Number</label>
-          <select ngModel name="unitNo" id="unitNo" class="form-control">
+          <select #unitNo name="unitNo" id="unitNo" class="form-control" (change)="onUnitChanged(unitNo.value)">
+            <option value="" selected disabled hidden></option>
             <option *ngFor="let sub of subunits">{{sub}}
           </select>
         </div>
 
         <div class="form-group">
           <label for="date">Set Date</label>
-          <input ngModel type="date" name="date" id="date" class="form-control">
+          <input [(ngModel)]="settingsUnit.date" type="date" name="date" id="date" class="form-control">
         </div>
 
         <div class="form-group">
           <label for="time">Set Time</label>
-          <input ngModel type="time" name="time" id="time" class="form-control">
+          <input [(ngModel)]="settingsUnit.time" type="time" name="time" id="time" class="form-control">
         </div>
 
         <div class="form-group">
           <label for="duration">Duration in Minutes</label>
-          <input type="number" name="duration" id="duration" min="1" max="30" class="form-control">
+          <input [(ngModel)]="settingsUnit.duration" type="number" name="duration" id="duration" min="1" max="30" class="form-control">
         </div>
 
         <div class="form-row">
           <div class="col">
             <label for="repetition">Repeat</label>
-            <select ngModel name="repetition" id="repetition" class="form-control">
+            <select [(ngModel)]="settingsUnit.repeat" name="repetition" id="repetition" class="form-control">
               <option *ngFor="let f of frequencies">{{f}}
             </select>
           </div>
 
           <div class="col">
             <label for="times">Times per day</label>
-            <input ngModel type="number" name="times" id="times" min="1" max="3" class="form-control">
+            <input [(ngModel)]="settingsUnit.repeatFreq" type="number" name="times" id="times" min="1" max="3" class="form-control">
           </div>
         </div>
         <div class="form-group"></div>
@@ -83,8 +85,9 @@
 
         <legend><strong>Humidity and Temperature</strong></legend>
         <div class="form-group">
-          <label for="unitNo1">Sub Unit Number</label>
-          <select ngModel #unitNo1 name="unitNo1" id="unitNo1" class="form-control" (change)="onUnitChanged2(unitNo1)">
+          <label for="dataUnitNo">Sub Unit Number</label>
+          <select #dataUnitNo name="dataUnitNo" id="dataUnitNo" class="form-control" (change)="onDataUnitChanged(dataUnitNo.value)">
+            <option value="" selected disabled hidden></option>
             <option *ngFor="let sub of subunits">{{sub}}
           </select>
         </div>
@@ -104,7 +107,7 @@
 
       <div class="box-1">
         <button type="submit" class="btn btn-success btn-block button_cl">Submit</button>
-        <button type="reset" class="btn btn-success  btn-block button_cl">Reset</button>
+        <!-- <button type="reset" class="btn btn-success  btn-block button_cl">Reset</button> -->
       </div>
 
     </form>

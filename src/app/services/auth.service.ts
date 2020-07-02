@@ -52,7 +52,6 @@ export class AuthService {
         console.log(error);
       })
       .then((value) => {
-        console.log(value["user"])
         this.userService.save(value["user"], deviceId);;
       });
   }

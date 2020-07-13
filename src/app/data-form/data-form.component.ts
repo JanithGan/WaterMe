@@ -1,9 +1,10 @@
 import { SubUnitSettings } from './../models/sub-unit';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { AuthService } from '../services/auth.service';
 import { AppUser } from '../models/app-user';
 import { take } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-data-form',
@@ -11,7 +12,7 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./data-form.component.css']
 })
 
-export class DataFormComponent {
+export class DataFormComponent implements OnDestroy {
 
   frequencies = ['None', 'Daily', 'Weekly'];
   subunits = [];
@@ -21,11 +22,12 @@ export class DataFormComponent {
 
   mode: string = "auto";
   unitTemp: number;
-  unitHumidity: number;
+  unitMoisture: number;
   deviceData: any;
 
   currentUnit: string;
-  settingsUnit= <SubUnitSettings>{};
+  settingsUnit = <SubUnitSettings>{};
+  dataUnit$: Subscription;
 
   constructor(private dataService: DataService, private auth: AuthService) {
     auth.appUser$.pipe(take(1)).subscribe(appUser => {
@@ -36,22 +38,30 @@ export class DataFormComponent {
         this.dataService.get(this.deviceId).pipe(take(1)).subscribe(data => {
           this.deviceData = data;
           this.mode = this.deviceData["mode"];
-          for(var sub in this.deviceData.units) this.subunits.push(sub);
+          for (var sub in this.deviceData.units) this.subunits.push(sub);
         });
       }
     })
   }
 
-  onUnitChanged(unitNo: string){
-    if(this.currentUnit)
+  ngOnDestroy() {
+    this.dataUnit$.unsubscribe();
+  }
+
+  onUnitChanged(unitNo: string) {
+    if (this.currentUnit)
       this.deviceData.units[this.currentUnit].settings = this.settingsUnit;
     this.currentUnit = unitNo;
     this.settingsUnit = this.deviceData.units[unitNo].settings;
   }
 
   onDataUnitChanged(unitNo: string) {
-    this.unitTemp = this.deviceData.units[unitNo].data.temperature;
-    this.unitHumidity = this.deviceData.units[unitNo].data.humidity;
+    if (this.dataUnit$)
+      this.dataUnit$.unsubscribe();
+    this.dataUnit$ = this.dataService.getSubUnitData(this.deviceId, unitNo).subscribe(dataUnit => {
+      this.unitTemp = dataUnit['temperature'];
+      this.unitMoisture = dataUnit['moisture'];
+    });
   }
 
   logout() {
@@ -59,7 +69,7 @@ export class DataFormComponent {
   }
 
   saveForm(f: any) {
-    for(let unitNo of this.subunits){
+    for (let unitNo of this.subunits) {
       this.dataService.saveSubUnit(this.deviceId, unitNo, this.deviceData.units[unitNo].settings);
     }
   }

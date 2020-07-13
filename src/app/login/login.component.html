@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <form class="form-signin">
     <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72"
          height="72">
@@ -13,4 +14,38 @@
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+=======
+<form class="form-signin" #f="ngForm" (ngSubmit)="login(f.value)">
+    <img class="mb-4" src="assets/logo.jpg" alt="image" width="120" height="120">
+
+    <div class="white-box col-sm-12">
+
+        <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
+
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input ngModel name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address"
+               required autofocus>
+
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input ngModel name="password" type="password" id="inputPassword" class="form-control" placeholder="Password"
+               required>
+
+        <!-- div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div> -->
+
+        <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
+
+        <div class="text">
+            Don't have an account ?
+        </div>
+
+        <a routerLink="/signup" style="color: teal;"><u>Sign Up</u></a>
+
+    </div>
+
+    <p class="mt-5 mb-3" style="color: white;">WaterMe Co. &copy; 2020</p>
+>>>>>>> 94bee9de89e78cb70db708fb0ebea9ca414b9c62
 </form>

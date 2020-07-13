@@ -50,8 +50,8 @@ export class DataFormComponent {
   }
 
   onDataUnitChanged(unitNo: string) {
-    this.unitTemp = this.deviceData.units[unitNo].temperature;
-    this.unitHumidity = this.deviceData.units[unitNo].humidity;
+    this.unitTemp = this.deviceData.units[unitNo].data.temperature;
+    this.unitHumidity = this.deviceData.units[unitNo].data.humidity;
   }
 
   logout() {

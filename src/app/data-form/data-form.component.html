@@ -83,7 +83,7 @@
 
       <fieldset class="box">
 
-        <legend><strong>Humidity and Temperature</strong></legend>
+        <legend><strong>Moisture Level and Temperature</strong></legend>
         <div class="form-group">
           <label for="dataUnitNo">Sub Unit Number</label>
           <select #dataUnitNo name="dataUnitNo" id="dataUnitNo" class="form-control" (change)="onDataUnitChanged(dataUnitNo.value)">
@@ -93,8 +93,8 @@
         </div>
 
         <div class="form-group">
-          <label for="humidity">Average Humidity:</label>
-          <output name="humidity" id="humidity" style="margin:10px;">{{unitHumidity}}</output>
+          <label for="moisture">Average Moisture Level:</label>
+          <output name="moisture" id="moisture" style="margin:10px;">{{unitMoisture}}</output>
         </div>
 
         <div class="form-group">
